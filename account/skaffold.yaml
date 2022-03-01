@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: account
+build:
+  artifacts:
+    - image: shikanime/identity-foundation-poc-account
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths:
+      - manifests

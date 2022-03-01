@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: identity-foundation-poc
+  name: identity-foundation-poc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identity-foundation-poc
+  template:
+    metadata:
+      labels:
+        app: identity-foundation-poc
+    spec:
+      containers:
+        - image: shikanime/identity-foundation-poc
+          name: identity-foundation-poc
+          ports:
+            - containerPort: 3000
+              name: web
+          resources: {}

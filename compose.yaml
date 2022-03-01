@@ -1,14 +1,15 @@
+version: '3'
 services:
-  app:
+  identity-foundation-poc:
     image: shikanime/identity-foundation-poc:v0.1.0
     build: .
     ports:
       - 3000:3000
-  account:
+  identity-foundation-poc-account:
     image: shikanime/identity-foundation-poc-account:v0.1.0
     build: account
     ports:
-      - 80:80
+      - 8080:80
   oathkeeper:
     image: oryd/oathkeeper:v0.38
     depends_on:
@@ -21,4 +22,6 @@ services:
       - LOG_LEVEL=debug
     restart: on-failure
     volumes:
-      - ./deploy/oathkeeper:/etc/ory/oathkeeper
+      - ./manifests/oathkeeper/overlays/dev/access-rules.yaml:/etc/ory/oathkeeper/access-rules.yaml
+      - ./manifests/oathkeeper/overlays/dev/id_token.jwks.json:/etc/ory/oathkeeper/id_token.jwks.json
+      - ./manifests/oathkeeper/overlays/dev/oathkeeper.yaml:/etc/ory/oathkeeper/oathkeeper.yaml

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oathkeeper
+spec:
+  template:
+    spec:
+      containers:
+        - args:
+            - serve
+            - proxy
+            - -c
+            - /etc/ory/oathkeeper/oathkeeper.yaml
+          name: oathkeeper
+          volumeMounts:
+            - mountPath: /etc/ory/oathkeeper
+              name: oathkeeper-config
+              readOnly: true
+      volumes:
+        - name: oathkeeper-config
+          configMap:
+            name: oathkeeper-config

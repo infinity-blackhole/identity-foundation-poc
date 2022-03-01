@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: poc-identity-infrastructure
+build:
+  artifacts:
+    - image: shikanime/identity-foundation-poc
+      docker:
+        dockerfile: Dockerfile
+requires:
+  - path: account
+profiles:
+  - name: dev
+    deploy:
+      kustomize:
+        paths:
+          - manifests/identity-foundation-poc
+          - manifests/oathkeeper/overlays/dev
+    portForward:
+      - resourceType: Service
+        resourceName: oathkeeper
+        port: proxy
+        localPort: 4455

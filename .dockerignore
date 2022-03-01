@@ -2,9 +2,11 @@
 
 # Deployment configuration
 /deploy/
+/manifests/
 
 # Environment configuration
 compose.yaml
+skaffold.yaml
 Dockerfile
 .gitignore
 .dockerignore

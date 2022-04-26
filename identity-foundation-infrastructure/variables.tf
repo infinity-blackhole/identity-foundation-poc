@@ -47,3 +47,13 @@ variable "oathkeeper_google_url" {
   type        = string
   description = "The public URL of the Oathkeeper Google Hydrator service"
 }
+
+variable "oathkeeper_google_username" {
+  type        = string
+  description = "The username for Oathkeeper Google Hydrator"
+}
+
+variable "oathkeeper_google_cipher_password" {
+  type        = string
+  description = "The password for Oathkeeper Google Hydrator"
+}

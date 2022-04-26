@@ -23,6 +23,11 @@ variable "identity_foundation_app_container_image_name" {
   description = "The container image name for Identity Foundation App"
 }
 
+variable "oathkeeper_google_container_image_name" {
+  type        = string
+  description = "The container image name for Oathkeeper Google Hydrator"
+}
+
 variable "oathkeeper_proxy_public_url" {
   type        = string
   description = "The public URL of the Oathkeeper proxy service"
@@ -38,7 +43,7 @@ variable "identity_foundation_app_public_url" {
   description = "The public URL of the identity-foundation-app service"
 }
 
-variable "ciphertext_jwks_keys" {
+variable "oathkeeper_google_url" {
   type        = string
-  description = "The JSON Web Key which is used to validate the signature of a signed JWT"
+  description = "The public URL of the Oathkeeper Google Hydrator service"
 }

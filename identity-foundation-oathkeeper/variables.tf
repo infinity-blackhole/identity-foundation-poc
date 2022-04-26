@@ -16,16 +16,25 @@ variable "identity_foundation_app_public_url" {
   default     = "http://identity-foundation-app:3000"
 }
 
-variable "id_token_jwks_url" {
+variable "oathkeeper_google_url" {
   type        = string
-  description = "The JSON Web Key which is used to validate the signature of a signed JWT"
-  default     = "file:///etc/ory/oathkeeper/id_token.jwks.json"
+  description = "The public URL of the Oathkeeper Google Hydrator service"
 }
 
 variable "oathkeeper_access_rules_repositories" {
-  type = list(string)
+  type        = list(string)
   description = "The list of repositories which contain the Oathkeeper access rules"
   default = [
     "file:///etc/ory/oathkeeper/access-rules.yaml"
   ]
+}
+
+variable "oathkeeper_google_username" {
+  type        = string
+  description = "The username of the Oathkeeper Google Hydrator"
+}
+
+variable "oathkeeper_google_password" {
+  type        = string
+  description = "The password of the Oathkeeper Google Hydrator"
 }

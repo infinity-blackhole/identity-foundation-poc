@@ -23,7 +23,7 @@ resource "local_file" "oathkeeper_access_rules" {
       }
       mutators = [
         {
-          handler = "noop"
+          handler = "hydrator"
         }
       ]
     },
@@ -48,7 +48,7 @@ resource "local_file" "oathkeeper_access_rules" {
       }
       mutators = [
         {
-          handler = "id_token"
+          handler = "hydrator"
         }
       ]
       errors = [
@@ -60,7 +60,7 @@ resource "local_file" "oathkeeper_access_rules" {
   ])
 }
 
-resource "local_file" "oathkeeper_config" {
+resource "local_sensitive_file" "oathkeeper_config" {
   filename = "${path.module}/.oathkeeper.yaml"
   content = yamlencode({
     version = "v0.38.4-beta.1"
@@ -130,7 +130,7 @@ resource "local_file" "oathkeeper_config" {
     }
     access_rules = {
       matching_strategy = "glob"
-      repositories = var.oathkeeper_access_rules_repositories
+      repositories      = var.oathkeeper_access_rules_repositories
     }
     authenticators = {
       anonymous = {
@@ -164,12 +164,21 @@ resource "local_file" "oathkeeper_config" {
       noop = {
         enabled = true
       }
-      id_token = {
+      hydrator = {
         enabled = true
         config = {
-          issuer_url = var.identity_foundation_account_public_url
-          jwks_url   = var.id_token_jwks_url
-          claims     = "{\"session\": {{ .Extra | toJson }}}"
+          api = {
+            url = var.oathkeeper_google_url
+            auth = {
+              basic = {
+                username = var.oathkeeper_google_username
+                password = var.oathkeeper_google_password
+              }
+            }
+          }
+        }
+        cache = {
+          ttl = "3600s"
         }
       }
     }

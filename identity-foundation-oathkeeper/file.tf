@@ -23,6 +23,9 @@ resource "local_file" "oathkeeper_access_rules" {
       }
       mutators = [
         {
+          handler = "header"
+        },
+        {
           handler = "hydrator"
         }
       ]
@@ -48,7 +51,15 @@ resource "local_file" "oathkeeper_access_rules" {
       }
       mutators = [
         {
+          handler = "header"
+        },
+        {
           handler = "hydrator"
+          config = {
+            api = {
+              url = "${var.oathkeeper_google_url}/hydrators/token/audiences/${urlencode(var.identity_foundation_app_public_url)}"
+            }
+          }
         }
       ]
       errors = [
@@ -164,11 +175,19 @@ resource "local_sensitive_file" "oathkeeper_config" {
       noop = {
         enabled = true
       }
+      header = {
+        enabled = true
+        config = {
+          headers = {
+            "X-User-Id" = "{{ print .Subject }}"
+          }
+        }
+      }
       hydrator = {
         enabled = true
         config = {
           api = {
-            url = var.oathkeeper_google_url
+            url = "${var.oathkeeper_google_url}/hydrators/token/audiences/${urlencode(var.identity_foundation_account_public_url)}"
             auth = {
               basic = {
                 username = var.oathkeeper_google_username

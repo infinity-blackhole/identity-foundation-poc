@@ -198,9 +198,7 @@ resource "google_cloud_run_service" "oathkeeper_google" {
           "--username",
           var.oathkeeper_google_username,
           "--password",
-          data.google_kms_secret.oathkeeper_google_secret_password.plaintext,
-          "--claims",
-          "{\"aud\": \"${var.identity_foundation_app_public_url}\", \"session\": {{ .Extra | toJson }}}"
+          data.google_kms_secret.oathkeeper_google_secret_password.plaintext
         ]
         resources {
           limits = {

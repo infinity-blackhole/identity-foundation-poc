@@ -1,7 +1,6 @@
 locals {
   oathkeeper_access_rules_secret_version  = tonumber(element(split("/", google_secret_manager_secret_version.oathkeeper_access_rules.name), 5))
   oathkeeper_config_secret_version        = tonumber(element(split("/", google_secret_manager_secret_version.oathkeeper_config.name), 5))
-  idtoken_jwks_secret_version             = tonumber(element(split("/", google_secret_manager_secret_version.idtoken_jwks.name), 5))
   identity_foundation_account_credentials = jsondecode(data.google_kms_secret.identity_foundation_account_credentials.plaintext)
 }
 
@@ -77,7 +76,7 @@ resource "google_cloud_run_service" "oathkeeper_proxy" {
           secret_name  = data.google_secret_manager_secret.idtoken_jwks.secret_id
           default_mode = 256
           items {
-            key  = local.idtoken_jwks_secret_version
+            key  = var.idtoken_jwks_secret_version
             path = "id_token.jwks.json"
           }
         }
@@ -177,7 +176,7 @@ resource "google_cloud_run_service" "oathkeeper_api" {
           secret_name  = data.google_secret_manager_secret.idtoken_jwks.secret_id
           default_mode = 256
           items {
-            key  = local.idtoken_jwks_secret_version
+            key  = var.idtoken_jwks_secret_version
             path = "id_token.jwks.json"
           }
         }

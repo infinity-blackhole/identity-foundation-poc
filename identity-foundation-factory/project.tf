@@ -1,3 +1,7 @@
+data "google_project" "project" {
+  project_id = var.google_project
+}
+
 resource "google_project_service" "artifact_registry" {
   project                    = var.google_project
   service                    = "artifactregistry.googleapis.com"

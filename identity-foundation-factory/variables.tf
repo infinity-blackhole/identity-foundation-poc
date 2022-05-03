@@ -19,3 +19,14 @@ variable "docker_container_image_name" {
   description = "The Docker container image name"
   default     = "gcr.io/cloud-builders/docker@sha256:f42c653aeae55fea4cd318a9443823c77243929dae6bb784b9eef21e1ab40d09"
 }
+
+variable "gcloud_container_image_name" {
+  type        = string
+  description = "The gcloud container image name"
+  default     = "gcr.io/cloud-builders/gcloud@sha256:7a300ff78b2d63b0126567750922bf3ca245415ee80e563202f870e71305715d"
+}
+
+variable "environment" {
+  type        = string
+  description = "The environment"
+}

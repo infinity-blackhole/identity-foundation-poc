@@ -33,9 +33,9 @@ variable "oathkeeper_api_public_url" {
   description = "The public URL of the Oathkeeper API service"
 }
 
-variable "ciphertext_jwks_keys" {
+variable "jwks_keys_secret_version" {
   type        = string
-  description = "The JSON Web Key which is used to validate the signature of a signed JWT"
+  description = "The secret version of the JWKS keys"
 }
 
 variable "ciphertext_identity_foundation_account_credentials" {

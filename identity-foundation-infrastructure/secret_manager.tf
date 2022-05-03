@@ -23,11 +23,6 @@ data "google_secret_manager_secret" "idtoken_jwks" {
   secret_id = "idtoken-jwks"
 }
 
-resource "google_secret_manager_secret_version" "idtoken_jwks" {
-  secret      = data.google_secret_manager_secret.idtoken_jwks.id
-  secret_data = local_sensitive_file.jwks.content
-}
-
 resource "google_project_iam_member" "runner_secret_manager_secret_accessor" {
   project = var.google_project
   role    = "roles/secretmanager.secretAccessor"

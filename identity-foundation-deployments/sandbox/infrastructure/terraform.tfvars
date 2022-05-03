@@ -1,0 +1,8 @@
+google_project                                     = "machinelearningsandbox-265814"
+google_region                                      = "europe-west1"
+oathkeeper_container_image_name                    = "europe-west1-docker.pkg.dev/machinelearningsandbox-265814/identity-foundation-run/oathkeeper@sha256:4c106d689739fde76acae1bc4aeb4ba1ae9621c21746ee4ea45669ce17740b6d"
+identity_foundation_account_container_image_name   = "europe-west1-docker.pkg.dev/machinelearningsandbox-265814/identity-foundation-run/account@sha256:e05c290832e7f690ae151757c7ab4c872d56e837aaa57d85afc2e5f63365ef2b"
+identity_foundation_app_container_image_name       = "europe-west1-docker.pkg.dev/machinelearningsandbox-265814/identity-foundation-run/app@sha256:c3a4207f895170dab729c098fe0d27c0db6efef49a63ef161098128968b82466"
+oathkeeper_proxy_public_url                        = "https://oathkeeper-proxy-hqe4jti5bq-ew.a.run.app"
+oathkeeper_api_public_url                          = "https://oathkeeper-api-hqe4jti5bq-ew.a.run.app"
+ciphertext_identity_foundation_account_credentials = "CiQAH3yunPTuGF29RTxXsKKmAIzA8qnqHAyfXymBjucrXzHkD80SZQAhnHIT7scbJ6/bY97bV6eA6bRmd8PbfVXl+9VUKwEjdzZp63xWWcYXu7UhDSEaOu33FOu70ws0ppPIwlWHFsSYSsE4ASSnfoJjtZD2iTenujuGIuMPTmI+hc4T4vwUeqZxgPuY"
